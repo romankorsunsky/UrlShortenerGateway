@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "app.jwt.secret",
+    "type": "java.lang.String",
+    "description": "Secret for JWT signing'"
+  },
+  {
+    "name": "app.rabbitmq.host",
+    "type": "java.lang.In",
+    "description": "rabbitmq.host'"
+  },
+  {
+    "name": "app.rabbitmq.port",
+    "type": "java.lang.Integer",
+    "description": "rabbitmq.port"
+  },
+  {
+    "name": "app.rabbitmq.password",
+    "type": "java.lang.String",
+    "description": "rabbitmq.password"
+  },
+  {
+    "name": "app.rabbitmq.username",
+    "type": "java.lang.String",
+    "description": "rabbitmq.username"
+  },
+  {
+    "name": "app.rabbitmq.vhost",
+    "type": "java.lang.String",
+    "description": "rabbitmq.vhost'"
+  }
+]}
