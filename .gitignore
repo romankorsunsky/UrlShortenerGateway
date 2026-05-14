@@ -19,6 +19,8 @@ target/
 
 **/.DS_Store
 
+application.properties
+
 ### IntelliJ IDEA ###
 .idea
 *.iws

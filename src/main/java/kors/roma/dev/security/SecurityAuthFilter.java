@@ -23,13 +23,11 @@ import kors.roma.dev.service.JwtService;
 
 @Component
 public class SecurityAuthFilter extends OncePerRequestFilter {
-    private final Logger logger;
     private final JwtService jwtService;
     
     @Autowired
     public SecurityAuthFilter(JwtService jwtService, Logger logger){
         this.jwtService = jwtService;
-        this.logger = logger;
     }
 
     @Override

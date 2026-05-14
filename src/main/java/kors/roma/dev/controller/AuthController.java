@@ -3,7 +3,6 @@ package kors.roma.dev.controller;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +19,7 @@ import kors.roma.dev.service.AuthenticationLifecycleService;
 
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/")
 public class AuthController {
     
     private final AuthenticationLifecycleService authService;
@@ -31,7 +30,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/auth")
+    @PostMapping("/auth/login")
     public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest authRequest)
     {   
         if(authRequest.username() == null || authRequest.password() == null ||
@@ -47,7 +46,6 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("isAnonymous()")
     @PostMapping("/users")
     public ResponseEntity<Object> register(@RequestBody RegistrationRequest regForm) {
         try {
@@ -65,7 +63,7 @@ public class AuthController {
         }
     }
 
-    @RequestMapping(path="/delete", method=RequestMethod.DELETE)
+    @RequestMapping(path="/user", method=RequestMethod.DELETE)
     public ResponseEntity<String> deleteUser() {
         try {
             var principal = (UserPrincipal) SecurityContextHolder.getContext().

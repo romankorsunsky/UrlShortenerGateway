@@ -36,13 +36,15 @@ public class SecConfig {
         httpsec.
             addFilterBefore(jwtFilter, AuthorizationFilter.class).
             authorizeHttpRequests(auth -> auth.
-                requestMatchers("/api/auth/delete/*").authenticated()).
+                requestMatchers(HttpMethod.POST,"/api/users").permitAll()). //register
             authorizeHttpRequests(auth -> auth.
-                requestMatchers("/api/auth/register","/api/auth/login").permitAll()).
+                requestMatchers(HttpMethod.DELETE, "/api/user").authenticated()). //delete
+                authorizeHttpRequests(auth -> auth.
+                    requestMatchers(HttpMethod.PATCH, "/api/user").authenticated()). //update password
             authorizeHttpRequests(auth -> auth.
-                requestMatchers(HttpMethod.POST,"/api/uris/longuri").authenticated()).
+                requestMatchers("/api/auth/login").permitAll()). //login
             authorizeHttpRequests(auth -> auth.
-                anyRequest().permitAll()).
+                anyRequest().authenticated()). //best practice is to restrict EVERYYING and relax as I go
             csrf(customizer -> customizer.disable());
         return httpsec.build();
     }
