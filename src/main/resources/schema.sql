@@ -10,7 +10,7 @@ create table Users(
     email varchar(48) not null unique,
     created_at timestamp without time zone default now(),
     constraint user_pkey primary key (id)
-    );
+);
 
 create table Roles(
     id serial primary key,

@@ -1,0 +1,53 @@
+edition = "2024";
+
+option go_package = "test/go_progs/main";
+/*  
+    This file is present here, I copied it quite a lot of times between
+    my different services, but ideally there is some repo sitting with files
+    and configuration just like this one, and each new service just pulls it 
+    from that repo 
+*/
+
+message AuthRequest{
+    string username = 1;
+    string password = 2;
+}
+
+message RegistrationReq{
+    string username = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message Token{
+    string value = 1;
+}
+
+message RegistrationResponse{
+    bool success = 1;
+}
+
+message JwksRequest{}
+
+message JwksResponse{
+    repeated JwkKey keys = 1;
+}
+message JwkKey{
+    string kty = 1;
+    string crv = 2;
+    string kid = 3;
+    string x   = 4;
+    int64  exp = 5;
+}
+
+service AuthService{
+    rpc AuthenticateUser (AuthRequest) returns (Token) {}
+}
+
+service RegService{
+    rpc RegisterUser (RegistrationReq) returns (RegistrationResponse) {}
+}
+
+service JwksService{
+    rpc GetJwks (JwksRequest) returns (JwksResponse) {}
+}
